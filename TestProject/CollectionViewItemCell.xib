@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionViewItemCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="238" placeholderIntrinsicHeight="266" id="1yX-8K-wr2" customClass="CollectionViewItemCell">
+            <rect key="frame" x="0.0" y="0.0" width="145" height="135"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="145" height="135"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxx/xx/xx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlG-Lm-jKA">
+                        <rect key="frame" x="8" y="8" width="80" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QK0-5X-IBm">
+                        <rect key="frame" x="8" y="37" width="129" height="90"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxy-Mh-m6w">
+                        <rect key="frame" x="108" y="8" width="29" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="KlG-Lm-jKA" firstAttribute="top" secondItem="1yX-8K-wr2" secondAttribute="top" constant="8" id="5nH-Db-hcP"/>
+                <constraint firstItem="KlG-Lm-jKA" firstAttribute="leading" secondItem="1yX-8K-wr2" secondAttribute="leading" constant="8" id="6Fq-Y7-bie"/>
+                <constraint firstAttribute="trailing" secondItem="jxy-Mh-m6w" secondAttribute="trailing" constant="8" id="Bv6-TY-8JW"/>
+                <constraint firstItem="jxy-Mh-m6w" firstAttribute="top" secondItem="1yX-8K-wr2" secondAttribute="top" constant="8" id="JjV-gY-ib9"/>
+                <constraint firstAttribute="trailing" secondItem="QK0-5X-IBm" secondAttribute="trailing" constant="8" id="O0l-OQ-YHo"/>
+                <constraint firstAttribute="bottom" secondItem="QK0-5X-IBm" secondAttribute="bottom" constant="8" id="Phd-ik-yDP"/>
+                <constraint firstItem="QK0-5X-IBm" firstAttribute="top" secondItem="KlG-Lm-jKA" secondAttribute="bottom" constant="8" id="XzD-FY-soh"/>
+                <constraint firstItem="QK0-5X-IBm" firstAttribute="leading" secondItem="1yX-8K-wr2" secondAttribute="leading" constant="8" id="vOW-28-rhI"/>
+            </constraints>
+            <size key="customSize" width="145" height="135"/>
+            <point key="canvasLocation" x="293.5" y="239.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
