@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class TopViewController;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) TopViewController *viewController;
-
 
 @end
 

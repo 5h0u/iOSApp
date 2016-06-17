@@ -8,13 +8,14 @@
 
 //Camera
 #import <AVFoundation/AVFoundation.h>
-//#import "TableCell.h"
 #import "ViewController.h"
 
 @interface ViewController ()
 
-//@property (weak, nonatomic)IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *previewView;
+@property (strong, nonatomic) AVCaptureSession *session;
+@property (strong, nonatomic) AVCaptureDevice *camera;
+@property (strong, nonatomic) AVCaptureStillImageOutput *imageOutput;
 
 @end
 
@@ -22,60 +23,57 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //テーブルセットアップ
-//  [self tableSetup];
-    
-    //カメラセットアップ
-    [self setupAVCamera];
-    
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
-/*
--(void)tableSetup{
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
+- (void)removeAVCamera{
+    //セッション停止
+    [_session stopRunning];
+    for(AVCaptureOutput *output in _session.outputs){
+        [_session removeOutput:output];
+    }
+    for(AVCaptureInput *input in _session.inputs){
+        [_session removeInput:input];
+    }
+    _imageOutput = nil;
+    _camera = nil;
+    _session = nil;
+}
+- (void)setupAVCamera{
+    _session = [[AVCaptureSession alloc]init];
+    
+    //カメラ取得
+    _camera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceInput *videoInput = [[AVCaptureDeviceInput alloc]initWithDevice:_camera error:nil];
  
-    [_tableView registerNib:[UINib nibWithNibName:@"TableCell" 
-                bundle:nil]forCellReuseIdentifier:@"Cell"];
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 89;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 50;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    return cell;
-}
-*/
-
- -(void)setupAVCamera{
- 
-    AVCaptureSession *session = [[AVCaptureSession alloc]init];
-    AVCaptureDevice *camera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    AVCaptureDeviceInput *videoInput = [[AVCaptureDeviceInput alloc]initWithDevice:camera error:nil];
- 
-    if([session canAddInput:videoInput])
-    [session addInput:videoInput];
+    if([_session canAddInput:videoInput])
+        [_session addInput:videoInput];
      
     //出力（画像）
-    AVCaptureStillImageOutput *imageOutput = [[AVCaptureStillImageOutput alloc]init];
-    [session addOutput:imageOutput];
+    _imageOutput = [[AVCaptureStillImageOutput alloc]init];
+    [_session addOutput:_imageOutput];
  
-    AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:session];
+    //プレビュー画面生成
+    AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:_session];
+    
     [previewLayer setBackgroundColor:[[UIColor grayColor] CGColor]];
-    [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
-
+    //[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    
+    //レイアウトをViewにセット
     CALayer *layer = self.previewView.layer;
     layer.masksToBounds = YES;
     [previewLayer setFrame:[layer bounds]];
     [layer addSublayer:previewLayer];
-
-    [session startRunning];
+    
+    //セッション開始
+    [_session startRunning];
  }
-
+-(void)viewDidLayoutSubviews{
+    [self setupAVCamera];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [self removeAVCamera];
+}
 
 
 - (void)didReceiveMemoryWarning {

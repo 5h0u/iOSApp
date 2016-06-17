@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface TopViewController : UIViewController
 
 @end
